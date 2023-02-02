@@ -1,15 +1,25 @@
 $.get("https://light-quilted-boar.glitch.me/movies").done(function (data) {
     console.log(data);
-    $("#movie-cards").append(
-        '<div class="movie-cards">' +
-        '<h5 id="date" class="card-title">' + toString(data[0]) + '</h5>')
-})
+    let index = 0;
+    $(".weekly-forecast").html("");
+    for (let i = 0; i < 100; i++) {
+        $("#movie-cards").append(
+            '<div class="movie-cards">' +
+            '<h5 id="title" class="card-title">' + JSON.stringify(data[i].title) + '</h5>' +
+            '<div id="rating" class="card-body">' + JSON.stringify(data[i].rating) + '</div>' +
+            '<div id="rating" class="card-body">' + JSON.stringify(data[i].genre) + '</div>' +
+            '<div id="rating" class="card-body">' + JSON.stringify(data[i].summary) + '</div>'
+        )
+        index += 8
+    }})
 
 
-//
-// $("#movie-cards").append(
-//     '<div class="movie-cards">' +
-//     '<h5 id="date" class="card-title">' + data[0] + '</h5>')
+
+
+
+
+
+
 
 
 
