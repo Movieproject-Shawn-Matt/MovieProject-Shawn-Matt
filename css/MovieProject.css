@@ -1,3 +1,11 @@
+body{
+    background-image: url("../img/redCurtain.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 #add-movie-card{
     float: right;
     display: flex;
