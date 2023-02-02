@@ -8,3 +8,17 @@
 .movie-text-box{
     margin-top: 10px;
 }
+
+.movie-cards{
+    border: solid black;
+    width: 50%;
+}
+
+.delete-btn{
+    float: right;
+}
+
+
+.delete-btn-hide{
+    visibility: hidden;
+}
