@@ -8,11 +8,12 @@ function addNewCards () {
         for (let i = 0; i < data.length; i++) {
             $("#movie-cards").append(
                 '<div class="movie-cards">' +
+                '<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">' + 'Launch demo modal' + '</button>' +
                 '<button type="button" data-id="'+ data[i].id +'" class="delete-btn btn btn-outline-danger w-15 p-1">' + 'X' + '</button>' +
                 '<h5 id="title" class="card-title">' + JSON.stringify(data[i].title) + '</h5>' +
-                '<div id="rating" class="card-body">' + JSON.stringify(data[i].rating) + '</div>' +
-                '<div id="rating" class="card-body">' + JSON.stringify(data[i].genre) + '</div>' +
-                '<div id="rating" class="card-body">' + JSON.stringify(data[i].summary) + '</div>' +
+                '<div id="rating" class="card-body">' + 'Rating out of 5: '+ JSON.stringify(data[i].rating) + '</div>' +
+                '<div id="rating" class="card-body">' + 'Genre: ' + JSON.stringify(data[i].genre) + '</div>' +
+                '<div id="rating" class="card-body">' + 'Summary: ' + JSON.stringify(data[i].summary) + '</div>' +
                 '<div id="id" class="card-body">' + JSON.stringify(data[i].id) + '</div>' +
                 '</div>'
             )
@@ -75,6 +76,18 @@ button.click(function() {
     });
 });
 
+
+document.documentElement.addEventListener("load", function(){
+    document.getElementById("loading").style.display = "block";
+});
+
+window.addEventListener("load", function(){
+    document.getElementById("loading").style.display = "none";
+});
+
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+})
 
 
 
