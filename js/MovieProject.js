@@ -8,13 +8,13 @@ function addNewCards() {
         for (let i = 0; i < data.length; i++) {
             $("#movie-cards").append(
                 '<div class="movie-cards">' +
-                '<button type="button" data-id="' + data[i].id + '" class="edit-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">' + 'Edit Movie Post' + '</button>' +
-                '<button type="button" data-id="' + data[i].id + '" class="delete-btn btn btn-outline-danger w-15 p-1">' + 'X' + '</button>' +
+                '<button type="button" data-id="' + data[i].id + '" class=" edit-btn btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">' + 'Edit Movie Post' + '</button>' +
+                '<button type="button" data-id="' + data[i].id + '" class="delete-btn btn btn-outline-danger rounded-circle ">' + 'X' + '</button>' +
                 '<h5 id="title" class="card-title">' + JSON.stringify(data[i].title) + '</h5>' +
                 '<div id="rating" class="card-body">' + 'Rating out of 5: ' + JSON.stringify(data[i].rating) + '</div>' +
                 '<div id="rating" class="card-body">' + 'Genre: ' + JSON.stringify(data[i].genre) + '</div>' +
                 '<div id="rating" class="card-body">' + 'Summary: ' + JSON.stringify(data[i].summary) + '</div>' +
-                '<div id="id" class="card-body">' + JSON.stringify(data[i].id) + '</div>' +
+
                 '</div>'
             )
             index += 8
@@ -59,7 +59,7 @@ function addNewCards() {
 
         $('.save-btn').click(function () {
             const id = $(this).attr('data-id');
-            alert(id)
+
 
             $.ajax({
                 url: `https://light-quilted-boar.glitch.me/movies/${id}`,
@@ -72,6 +72,7 @@ function addNewCards() {
                     summary: $("#edit-summary-box").val()
                 }),
                 success: function (data) {
+                    addNewCards()
                     console.log(data);
 
                 },
