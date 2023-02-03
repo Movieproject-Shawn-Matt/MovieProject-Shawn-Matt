@@ -97,3 +97,14 @@ h2{
 .delete-btn-hide{
     visibility: hidden;
 }
+
+.edit-subtitles {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.edit-text-box{
+    border-radius: 10px;
+    padding: 10px;
+    padding-right: 200px;
+}
