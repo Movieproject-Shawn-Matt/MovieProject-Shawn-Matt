@@ -20,12 +20,12 @@ function addNewCards() {
             index += 8
         }
         $(".movie-cards").hover(
-            function() {
+            function () {
                 $(this).removeClass("hidden");
                 $(this).children().first().show();
                 $(this).children().first().next().show();
             },
-            function() {
+            function () {
                 $(this).children().first().hide();
                 $(this).children().first().next().hide();
             }
@@ -100,7 +100,6 @@ function addNewCards() {
 addNewCards()
 
 
-
 const titleTextBox = $("#title-text-box");
 const ratingTextBox = $('#rating-text-box')
 const genreTextBox = $('#genre-text-box')
@@ -145,7 +144,6 @@ $('#myModal').on('shown.bs.modal', function () {
 })
 
 
-
 // Get a reference to the .mask element.
 const mask = document.querySelector('.mask');
 
@@ -153,8 +151,8 @@ const mask = document.querySelector('.mask');
 document.addEventListener('pointermove', (pos) => {
 
     // Calculate mouse position in percentages.
-    let x = parseInt( pos.clientX / window.innerWidth * 100 );
-    let y = parseInt( pos.clientY / window.innerHeight * 100 );
+    let x = parseInt(pos.clientX / window.innerWidth * 100);
+    let y = parseInt(pos.clientY / window.innerHeight * 100);
 
     // Update the custom property values on the body.
     // mask.style.setProperty('--mouse-x', x + '%');
@@ -164,24 +162,14 @@ document.addEventListener('pointermove', (pos) => {
 
 
 
-
-
-const searchBox = document.getElementById("search-movie-box");
-const movieNames = document.getElementById("movie-cards");
-
-searchBox.addEventListener("input", function() {
-    const searchTerm = this.value.toLowerCase();
-    const movieElements = movieNames.getElementsByTagName(".movie-cards");
-
-    for (let i = 0; i < movieElements.length; i++) {
-        const dive = movieElements[i];
-        const movieName = dive.innerText.toLowerCase();
-
-        if (movieName.indexOf(searchTerm) !== -1) {
-            dive.style.display = "block";
+$("#search-movie-box").keydown(function () {
+    let searchValue = $("#search-movie-box").val().toLowerCase();
+    $(".movie-cards").each(function () {
+        let cardTitle = $(this).find(".card-title").text().toLowerCase();;
+        if (cardTitle.indexOf(searchValue) !== -1) {
+            $(this).show();
         } else {
-            dive.style.display = "none";
+            $(this).hide();
         }
-    }
+    });
 });
-
