@@ -176,3 +176,26 @@ h2{
 }
 .delete-btn{
 margin: 10px 10px;}
+
+:root {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+}
+
+
+
+.mask {
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0,0%,0%, 0.9);
+    mask: radial-gradient(
+            circle at var(--mouse-x) var(--mouse-y),
+            transparent 1000px,
+            black 150px
+    );
+    -webkit-mask: radial-gradient(
+            circle at var(--mouse-x) var(--mouse-y),
+            transparent 100px,
+            black 150px
+    );
+}
