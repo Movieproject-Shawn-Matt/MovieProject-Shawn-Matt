@@ -17,7 +17,8 @@ body{
     background-repeat: no-repeat;
     background-position: center;}
 
-#add-movie-card{
+
+#search-div{
     position: fixed;
     margin-top: 30px;
     margin-left: 900px;
@@ -32,6 +33,47 @@ body{
     -webkit-backdrop-filter: blur(5.3px);
     border: 1px solid rgba(107, 107, 107, 0.48);
 
+}
+
+#search-movie-box{
+    border-radius: 6px;
+    padding: 6px 13px 6px 6px;
+    margin-bottom: 10px;
+}
+
+#add-movie-card{
+    position: fixed;
+    margin-top: 220px;
+    margin-left: 900px;
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    background: rgba(107, 107, 107, 0.36);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.3px);
+    -webkit-backdrop-filter: blur(5.3px);
+    border: 1px solid rgba(107, 107, 107, 0.48);
+
+}
+
+.search-movie-button{
+    display: block;
+    position: relative;
+    padding: 10px 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #0099cc;
+    border: none;
+}
+
+
+h3{
+    color: white;
+    text-align: center;
 }
 
 
