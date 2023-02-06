@@ -252,3 +252,45 @@ h2{
 #movie-cards{
     width: 50%;
 }
+.search-movie-button{
+    display: block;
+    position: relative;
+    margin: 5px auto 0;
+    padding: 10px 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #0099cc;
+    border: none;
+}
+.search-movie-button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255,255,255,0.4);
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+}
+.search-movie-button:hover:after {
+    width: 120%;
+    background-color: rgba(255,255,255,0);
+
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+#spotlight {
+    position: fixed;
+    opacity: 1;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
