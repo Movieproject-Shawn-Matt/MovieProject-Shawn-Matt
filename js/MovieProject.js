@@ -8,8 +8,8 @@ function addNewCards() {
         for (let i = 0; i < data.length; i++) {
             $("#movie-cards").append(
                 '<div class="movie-cards">' +
-                '<button type="button" data-id="' + data[i].id + '" class=" edit-btn btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">' + 'Edit Movie Post' + '</button>' +
-                '<button type="button" data-id="' + data[i].id + '" class="delete-btn btn btn-outline-danger rounded-circle ">' + 'X' + '</button>' +
+                '<button type="button" data-id="' + data[i].id + '" class="delete-btn hidden btn btn-outline-danger rounded-circle ">' + 'X' + '</button>' +
+                '<button type="button" data-id="' + data[i].id + '" class="edit-btn hidden btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">' + 'Edit Movie Post' + '</button>' +
                 '<h5 id="title" class="card-title">' + JSON.stringify(data[i].title) + '</h5>' +
                 '<div id="rating" class="card-body">' + 'Rating out of 5: ' + JSON.stringify(data[i].rating) + '</div>' +
                 '<div id="rating" class="card-body">' + 'Genre: ' + JSON.stringify(data[i].genre) + '</div>' +
@@ -19,6 +19,17 @@ function addNewCards() {
             )
             index += 8
         }
+        $(".movie-cards").hover(
+            function() {
+                $(this).removeClass("hidden");
+                $(this).children().first().show();
+                $(this).children().first().next().show();
+            },
+            function() {
+                $(this).children().first().hide();
+                $(this).children().first().next().hide();
+            }
+        );
         const deleteButton = $(".delete-btn");
 
         deleteButton.click(function () {
@@ -89,7 +100,7 @@ function addNewCards() {
 addNewCards()
 
 
-//add a movie to the API
+
 const titleTextBox = $("#title-text-box");
 const ratingTextBox = $('#rating-text-box')
 const genreTextBox = $('#genre-text-box')
@@ -146,66 +157,31 @@ document.addEventListener('pointermove', (pos) => {
     let y = parseInt( pos.clientY / window.innerHeight * 100 );
 
     // Update the custom property values on the body.
-    mask.style.setProperty('--mouse-x', x + '%');
-    mask.style.setProperty('--mouse-y', y + '%');
+    // mask.style.setProperty('--mouse-x', x + '%');
+    // mask.style.setProperty('--mouse-y', y + '%');
 
 });
-//
-// // Function to retrieve data for an object by id and display it in text boxes
-// const getData = id => {
-//     $.ajax({
-//         url: `https://light-quilted-boar.glitch.me/movies/${id}`,
-//         type: "GET",
-//         success: function(data) {
-//             // Display the data in the text boxes
-//             $("#edit-title-box").val(data[1].title);
-//             $("#edit-rating-box").val(data[1].rating);
-//             $("#edit-genre-box").val(data[1].genre);
-//         },
-//         error: function(error) {
-//             console.error("There was a problem with the request:", error);
-//         }
-//     });
-// };
-//
-// // Function to update the data for an object in the API
-// const updateData = id => {
-//     const updatedTitle = $("#edit-title-box").val();
-//     const updatedRating = $("#edit-rating-box").val();
-//     const updatedGenre = $("#edit-genre-box").val();
-//     const updatedSummary = $("#edit-summary-box").val();
-//
-//     $.ajax({
-//         url: `https://light-quilted-boar.glitch.me/movies/${id}`,
-//         type: "PUT",
-//         contentType: "application/json",
-//         data: JSON.stringify({
-//             attribute1: updatedAttribute1,
-//             attribute2: updatedAttribute2,
-//             attribute3: updatedAttribute3
-//         }),
-//         success: function(data) {
-//             console.log(data);
-//             // Notify the user that the update was successful
-//         },
-//         error: function(error) {
-//             console.error("There was a problem with the update:", error);
-//         }
-//     });
-// };
-//
-// // Event listener for the save button
-// $("#save-button").click(function() {
-//     const id = $("#object-id").val();
-//     updateData(id);
-// });
-//
-// // Event listener for the load button
-// $("#load-button").click(function() {
-//     const id = $("#object-id").val();
-//     getData(id);
-// });
-//
-//
-//
-//
+
+
+
+
+
+const searchBox = document.getElementById("search-movie-box");
+const movieNames = document.getElementById("movie-cards");
+
+searchBox.addEventListener("input", function() {
+    const searchTerm = this.value.toLowerCase();
+    const movieElements = movieNames.getElementsByTagName(".movie-cards");
+
+    for (let i = 0; i < movieElements.length; i++) {
+        const dive = movieElements[i];
+        const movieName = dive.innerText.toLowerCase();
+
+        if (movieName.indexOf(searchTerm) !== -1) {
+            dive.style.display = "block";
+        } else {
+            dive.style.display = "none";
+        }
+    }
+});
+
