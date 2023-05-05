@@ -1,7 +1,7 @@
 //Display the movies in their cards
 function addNewCards() {
     $('#movie-cards').html('')
-    $.get("https://light-quilted-boar.glitch.me/movies").done(function (data) {
+    $.get("https://funky-liberating-firewall.glitch.me/movies").done(function (data) {
         console.log(data);
         let index = 0;
         $(".weekly-forecast").html("");
@@ -36,7 +36,7 @@ function addNewCards() {
             const id = $(this).attr('data-id');
 
             $.ajax({
-                url: `https://light-quilted-boar.glitch.me/movies/${id}`,
+                url: `https://funky-liberating-firewall.glitch.me/movies/${id}`,
                 type: "DELETE",
                 success: function (data) {
                     console.log(data);
@@ -53,7 +53,7 @@ function addNewCards() {
             $('.save-btn').attr('data-id', id)
 
             $.ajax({
-                url: `https://light-quilted-boar.glitch.me/movies/${id}`,
+                url: `https://funky-liberating-firewall.glitch.me/movies/${id}`,
                 type: "GET",
                 success: function (data) {
                     $("#edit-title-box").val(data.title);
@@ -73,7 +73,7 @@ function addNewCards() {
 
 
             $.ajax({
-                url: `https://light-quilted-boar.glitch.me/movies/${id}`,
+                url: `https://funky-liberating-firewall.glitch.me/movies/${id}`,
                 type: "PUT",
                 contentType: "application/json",
                 data: JSON.stringify({
@@ -114,7 +114,7 @@ button.click(function () {
 
 
     $.ajax({
-        url: "https://light-quilted-boar.glitch.me/movies",
+        url: "https://funky-liberating-firewall.glitch.me/movies",
         type: "POST",
         data: JSON.stringify({title: titleValue, rating: ratingValue, genre: genreValue, summary: summaryValue}),
         contentType: "application/json",
