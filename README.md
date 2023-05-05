@@ -1,4 +1,4 @@
-# Movie Project Application
+# Movie Database Application
 
 This is a web application that allows users to store their favorite movies as JSON objects. Users can add movie titles, ratings, genres, and summaries and later search through their saved movies and edit any information about them.
 
