@@ -1,3 +1,13 @@
+function loadCurrentCards() {
+    $('#movie-cards').html('')
+    $.get("https://funky-liberating-firewall.glitch.me/movies").done(function (data) {
+        renderCard(data)
+    })
+}
+
+
+
+
 function renderCard(data) {
     let index = 0;
     $("").html("");
@@ -26,7 +36,6 @@ function renderCard(data) {
             $(this).children().first().next().hide();
         }
     );
-
     renderDeleteButton()
     renderEditButton()
     modalFunctionality()
@@ -37,11 +46,46 @@ function renderCard(data) {
 
 
 
+function renderDeleteButton(){
+    const deleteButton = $(".delete-btn");
 
+    deleteButton.click(function () {
+        const id = $(this).attr('data-id');
 
+        $.ajax({
+            url: `https://funky-liberating-firewall.glitch.me/movies/${id}`,
+            type: "DELETE",
+            success: function (data) {
+                console.log(data);
+                loadCurrentCards()
+            },
+            error: function (error) {
+                console.error("There was a problem with the delete operation:", error);
+            }
+        });
+    });
+}
 
+function renderEditButton(){
+    $('.edit-btn').click(function () {
+        const id = $(this).attr('data-id');
+        $('.save-btn').attr('data-id', id)
 
-
+        $.ajax({
+            url: `https://funky-liberating-firewall.glitch.me/movies/${id}`,
+            type: "GET",
+            success: function (data) {
+                $("#edit-title-box").val(data.title);
+                $("#edit-rating-box").val(data.rating);
+                $("#edit-genre-box").val(data.genre);
+                $('#edit-summary-box').val(data.summary);
+            },
+            error: function (error) {
+                console.error("There was a problem with the request:", error);
+            }
+        });
+    });
+}
 
 function modalFunctionality(){
     $('.save-btn').click(function () {
@@ -70,49 +114,4 @@ function modalFunctionality(){
     });
 }
 
-function renderEditButton(){
-    $('.edit-btn').click(function () {
-        const id = $(this).attr('data-id');
-        $('.save-btn').attr('data-id', id)
-
-        $.ajax({
-            url: `https://funky-liberating-firewall.glitch.me/movies/${id}`,
-            type: "GET",
-            success: function (data) {
-                $("#edit-title-box").val(data.title);
-                $("#edit-rating-box").val(data.rating);
-                $("#edit-genre-box").val(data.genre);
-                $('#edit-summary-box').val(data.summary);
-            },
-            error: function (error) {
-                console.error("There was a problem with the request:", error);
-            }
-        });
-    });
-}
-
-
-
-
-function renderDeleteButton(){
-    const deleteButton = $(".delete-btn");
-
-    deleteButton.click(function () {
-        const id = $(this).attr('data-id');
-
-        $.ajax({
-            url: `https://funky-liberating-firewall.glitch.me/movies/${id}`,
-            type: "DELETE",
-            success: function (data) {
-                console.log(data);
-                loadCurrentCards()
-            },
-            error: function (error) {
-                console.error("There was a problem with the delete operation:", error);
-            }
-        });
-    });
-}
-
-
-
+loadCurrentCards()
